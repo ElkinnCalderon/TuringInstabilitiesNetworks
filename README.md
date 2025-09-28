@@ -1,4 +1,4 @@
-### Turing Instabilities on Network
+# Turing Instabilities on Network
 This code solves a reaction-diffusion system, where diffusion is defined over a complex network using the discrete Laplacian operator. However, the main interest lies in the case where the networks on which the species concentrations are defined are different.
 
 The system has the following form:
@@ -17,13 +17,13 @@ parametrosRD[0][1] corresponds to that of species v.
 
 Although it is possible to directly configure these diffusion coefficients over the network in the module ProblemSetup.py, modifying them in main.py is also allowed to facilitate numerical exploration.
 
-### Class
-# Network
-# ProblemSetup
-# TuringAnalisis
-# TemporalIntegration
+# Class
+## Network
+## ProblemSetup
+## TuringAnalisis
+## TemporalIntegration
 
-### Code Availability  
+# Code Availability  
 
 The code used in this work is available at the GitHub repository: [https://github.com/usuario/repositorio](https://github.com/usuario/repositorio).  
 The project is managed with version control in Git (via GitHub) and includes tagged releases to facilitate reproducibility.  
