@@ -25,9 +25,10 @@ Although it is possible to directly configure these diffusion coefficients over 
 
 # Code Availability  
 
-The code used in this work is available at the GitHub repository: [https://github.com/usuario/repositorio](https://github.com/usuario/repositorio).  
+The code used in this work is available at the GitHub repository: [[https://github.com/usuario/repositorio](https://github.com/usuario/repositorio](https://github.com/ElkinnCalderon/TuringInstabilitiesNetworks/)).  
 The project is managed with version control in Git (via GitHub) and includes tagged releases to facilitate reproducibility.  
 
+# Requirements
 The main dependencies are:  
 
 ```bash
@@ -35,3 +36,10 @@ Python 3.11
 numpy==2.0.1
 matplotlib==3.9.2
 networkx==3.2.1
+
+
+# License
+The code is distributed under the MIT License, which allows use, modification, and redistribution with proper attribution.
+# Contact
+📧 elkinncb@gmail.com
+📧 jlaragon@unam.mx
