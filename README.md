@@ -18,22 +18,20 @@ parametrosRD[0][1] corresponds to that of species v.
 Although it is possible to directly configure these diffusion coefficients over the network in the module ProblemSetup.py, modifying them in main.py is also allowed to facilitate numerical exploration.
 
 ## Class
-### Network
-### ProblemSetup
-### TuringAnalisis
-### TemporalIntegration
+# Network
+# ProblemSetup
+# TuringAnalisis
+# TemporalIntegration
 
-# Code Availability
-The code used in this work is available at the GitHub repository: https://github.com/usuario/repositorio.
-The project is managed with version control in Git (via GitHub) and includes tagged releases to facilitate reproducibility.
+## Code Availability  
 
-The main dependencies are:
+The code used in this work is available at the GitHub repository: [https://github.com/usuario/repositorio](https://github.com/usuario/repositorio).  
+The project is managed with version control in Git (via GitHub) and includes tagged releases to facilitate reproducibility.  
 
+The main dependencies are:  
+
+```bash
 Python 3.11
-numpy (version 2.0.1)
-matplotlib (version 3.9.2)
-networkx (version 3.2.1)
-
-All dependencies are listed in the requirements.txt file.
-
-The code is distributed under the MIT License, which allows use, modification, and redistribution with proper attribution.
+numpy==2.0.1
+matplotlib==3.9.2
+networkx==3.2.1
