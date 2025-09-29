@@ -4,13 +4,14 @@ from ProblemSetup import Class_SistemaReaccionDifusion
 
 
 class Class_TemporalIntegration:
-    def __init__(self,SisReacDif,Nit=100,Niter=1,integrator='Euler'):
+    def __init__(self,SisReacDif,Nit=100,Niter=1,integrator='Euler',imprimir=True):
         self.integrator          =integrator
         self.SisReacDif          =SisReacDif
         self.Nit                 =Nit
         self.Niter               =Niter
         self.epsilon             =0.05
         self.delta               =0.0001
+        self.Imprimir            =imprimir
         self.CN,self.difCNC0     =self.Simulate()
 
 
@@ -47,7 +48,7 @@ class Class_TemporalIntegration:
         N           =self.SisReacDif.N
         M           =self.SisReacDif.M
         D           =self.SisReacDif.D
-        L           =self.SisReacDif.L
+        L           =-self.SisReacDif.L
         Nit         =self.Nit
         Niter       =self.Niter
         
@@ -82,20 +83,27 @@ class Class_TemporalIntegration:
         for i in range(1,Niter+1):
             print('ITER',Nit,'salto',i,'t',t)
             if self.integrator=='Euler':
-                CN,t=self.MetEulerReaccion(Nit,N,C0,D,L,t,delta0)
+                CN,t=self.MetEulerReaccion(Nit,C0,D,L,t,delta0)
             elif self.integrator=='RK5':
                 CN,t  =self.MetRK5Reaccion(Nit=Nit, C0=C0, D=D, L=L, t=t, delta=delta0)
 
-            difCNC0.append(np.linalg.norm(CN-C0))
+            CN_C0=np.linalg.norm(CN-C0)
+            difCNC0.append(CN_C0)
             
             print('CN',CN)
             print('norm(CN-C0)',np.linalg.norm(CN-C0))
             
             C0=CN
-            filename = os.path.join(folder, f'vector_iteracion_{i}.txt')
-            with open(filename, 'w') as archivo:
-                contenido = ' '.join(map(str, CN))
-                archivo.write(contenido)
+            if self.Imprimir:
+                filename = os.path.join(folder, f'vector_iteracion_{i}.txt')
+                with open(filename, 'w') as archivo:
+                    contenido = ' '.join(map(str, CN))
+                    archivo.write(contenido)
+            if np.log10(CN_C0)<-10:
+                print('sale del ciclo de simulacion en',i,CN_C0,np.log10(CN_C0))
+                break
+
+
 
         
         return CN,difCNC0

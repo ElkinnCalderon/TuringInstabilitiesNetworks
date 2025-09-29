@@ -21,6 +21,12 @@ class Class_NetworkTuring:
         self.Lu=nx.laplacian_matrix(self.G_u).todense()
         self.Lv=nx.laplacian_matrix(self.G_v).todense()
 
+        for node, (x, y) in self.pos_u.items():
+            self.G_u.nodes[node]["x"] = float(x)
+            self.G_u.nodes[node]["y"] = float(y)
+
+        nx.write_gexf(self.G_u, "red_con_posiciones.gexf")
+
 
     def generar_red_conexa(self, n, p, seed=None):
         """Genera una red Erdős-Rényi conexa."""
@@ -74,11 +80,11 @@ class Class_NetworkTuring:
         color_map_v = ['skyblue'] *self.N + ['lightcoral'] * self.M
 
         # Graficar la red original en forma georeferenciada
-        axs[0].set_title("Red de la concentración $u$")
+        axs[0].set_title("Red de la concentración $v$")
         
         nx.draw(self.G_u, pos=self.pos_u, ax=axs[0], with_labels=True, node_size=700, node_color=color_map_u, font_size=12, font_weight='bold', edge_color='gray')
         # Graficar la red extendida en forma georeferenciada
-        axs[1].set_title("Red de la concentración $v$" )
+        axs[1].set_title("Red de la concentración $p$" )
         nx.draw(self.G_v, pos=self.pos_v, ax=axs[1], with_labels=True, node_size=700, node_color=color_map_v, font_size=12, font_weight='bold', edge_color='gray')
 
         plt.show()

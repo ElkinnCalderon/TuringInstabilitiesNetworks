@@ -11,6 +11,7 @@ class Class_TuringAnalisis:
         self.ValP_J,self.VecP_J  =np.linalg.eig(self.J)
         
         self.ValP_L,self.VecP_L  =np.linalg.eig(SisReacDif.L)
+        print(self.VecP_L)
 
         self.Dcrit               =self.difusionCritica()
         self.RelacionDispersion  =self.relacion_dispersion_discreta()
@@ -76,7 +77,7 @@ class Class_TuringAnalisis:
         M=self.SisReacDif.M
         p=self.Dcrit[0] 
         # Valores iniciales para la bisección (ajusta estos valores según sea necesario)
-        p_min = p        # Límite inferior del intervalo de búsqueda
+        p_min = 0.000001        # Límite inferior del intervalo de búsqueda
         p_max = 0.9      # Límite superior del intervalo de búsqueda
         iteraciones = 0
 
@@ -85,7 +86,10 @@ class Class_TuringAnalisis:
             p = (p_min + p_max) / 2.0
 
             # Recalcular D, H y omega con el valor actual de p[0][0]
-            H = self.MatrizH(range(N + M), self.VecP_L)
+            self.SisReacDif.p[0][0]=p
+            self.SisReacDif.D=self.SisReacDif.construir_matriz_difusion()
+            rango_indices=range(self.SisReacDif.N+self.SisReacDif.M)
+            H = self.MatrizH(rango_indices)
             valores_propiosH, vectores_propiosH = np.linalg.eig(H)
             omega = max(valores_propiosH.real)
 
@@ -97,7 +101,7 @@ class Class_TuringAnalisis:
                 break
 
             # Actualizar intervalo de búsqueda
-            if omega > 0:
+            if omega < 0:
                 p_max = p
             else:
                 p_min = p
